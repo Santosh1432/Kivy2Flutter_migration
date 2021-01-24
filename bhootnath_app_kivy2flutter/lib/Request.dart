@@ -1,30 +1,35 @@
 import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import "globals.dart" as global;
+import 'dart:convert';
+import "SubmitFile.dart";
+
+ void validate(BuildContext context,String UserName_Value,String Password_value ) async {
+
+  final http.Response response = await http.post(
+    'http://3.16.36.128/api/token/',
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'username': "admin",
+      'password':Password_value,
+    }),
+  );
 
 
-Future <String>validate(String UserName_Value,String Password_value ) async{
-  final String url="http://3.16.36.128/api/token/";
-  Map<String, String> headers = {"Content-type": "application/json"};
-  String json = '{"username": UserName_Value, "password": Password_value}';
+  if(response.statusCode==200){
+    Map <String ,dynamic> dartbody =jsonDecode(response.body);
+   print(jsonDecode(response.body));
+    global.access_token=dartbody["access"];
+    Navigator.push(
+       context,MaterialPageRoute(builder: (context) => NextPage()));
 
-  final  response = await http.post(url, headers: headers, body: json);
-  if(response.statusCode==201){
-    final String bodyVal=response.body;
-    //String access_key=bodyVal.access
-    print(bodyVal);
-    return bodyVal;
   }
-  else{
-    return "";
+  else {
+    print(jsonDecode(response.body));
   }
 }
 
 
 
-// Future Submit(String UserName_Value,String Password_value ) async{
-//   if(UserName_Value==''){
-//     return "Please Enter User Name";
-//   }else if(Password_value==''){
-//     return "Please Enter Password";
-//   }
-//   return "";
-// }
