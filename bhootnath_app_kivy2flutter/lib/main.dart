@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import "Request.dart";
-import "SubmitFile.dart";
-
 void main() {
   runApp(MyApp());
 }
@@ -29,8 +28,8 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-TextEditingController Username = new TextEditingController();
-TextEditingController Password = new TextEditingController();
+TextEditingController username = new TextEditingController();
+TextEditingController password = new TextEditingController();
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
@@ -38,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final emailField = TextField(
-      controller: Username,
+      controller: username,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
@@ -49,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final passwordField = TextField(
-      controller: Password,
+      controller: password,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
@@ -66,17 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          if(Username.text==""){
+          if(username.text==""){
             Future.delayed(Duration.zero, () => showAlert(context));
           }else{
-            String body= validate(Username.text,Password.text) as String;
-            if(body.length >0 ){
-              Navigator.push(
-                  context,MaterialPageRoute(builder: (context) => NextPage()));
-            }else{
+               validate(context,username.text,password.text) ;
+               }
 
-            }
-        }},
+        },
         child: Text("Login",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -125,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-void showAlert(BuildContext context) {
+void showAlert(BuildContext context ) {
   showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -134,27 +129,4 @@ void showAlert(BuildContext context) {
 }
 
 
-// class NextPage extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("BhootNath submit page"),
-//       ),
-//       body: Center(
-//         child: Column(
-//           children: <Widget>[
-//             MaterialButton(
-//               child: Text("Go Back!"),
-//               onPressed: () {
-//                 Navigator.pop(context);
-//               },
-//               color: Colors.red,
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+
