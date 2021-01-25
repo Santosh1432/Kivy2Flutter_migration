@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bhootnath.bhootnath_app_kivy2flutter">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
+        android:usesCleartextTraffic="true"
         android:label="bhootnath_app_kivy2flutter"
         android:icon="@mipmap/ic_launcher">
         <activity

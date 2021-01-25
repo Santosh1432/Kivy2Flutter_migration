@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import "Request.dart";
+
 void main() {
   runApp(MyApp());
 }
@@ -12,14 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.yellow,
       ),
       home: MyHomePage(title: 'BhootNath Result Publish Page'),
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -28,11 +26,12 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
 TextEditingController username = new TextEditingController();
 TextEditingController password = new TextEditingController();
-class _MyHomePageState extends State<MyHomePage> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "User Name",
           border:
-
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final passwordField = TextField(
       controller: password,
@@ -55,9 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
           border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final loginButon = Material(
+    final loginbuton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
@@ -65,12 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          if(username.text==""){
-            Future.delayed(Duration.zero, () => showAlert(context));
-          }else{
-               validate(context,username.text,password.text) ;
-               }
-
+          if (username.text == "") {
+            Future.delayed(Duration.zero, () => showAlertDialog(context,"Please Enter UserName"));
+          } else if(password.text==""){
+            Future.delayed(Duration.zero, () => showAlertDialog(context,"Please Enter Password"));
+          } else{
+            validate(context, username.text, password.text);
+          }
         },
         child: Text("Login",
             textAlign: TextAlign.center,
@@ -91,13 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // SizedBox(
-                //   height: 101.0,
-                //   child: Image.asset(
-                //     "assets/logo.png",
-                //     fit: BoxFit.contain,
-                //   ),
-                // ),
                 SizedBox(height: 35.0),
                 emailField,
                 SizedBox(height: 15.0),
@@ -105,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 25.0,
                 ),
-                loginButon,
+                loginbuton,
                 SizedBox(
                   height: 15.0,
                 ),
@@ -116,17 +108,32 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 }
 
+showAlertDialog(BuildContext context,String msg) {
 
-void showAlert(BuildContext context ) {
+  // set up the button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    style: TextButton.styleFrom(
+      primary: Colors.teal,
+    ),
+    onPressed: () {Navigator.pop(context); },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Alert"),
+    content: Text(msg),
+    actions: [
+      okButton,
+    ],
+  );
+  // show the dialog
   showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text("Enter username"),
-      ));
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
-
-
-

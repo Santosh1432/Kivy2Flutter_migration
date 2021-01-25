@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import "globals.dart" as global;
 import 'dart:convert';
 import "SubmitFile.dart";
+import 'main.dart';
 
  void validate(BuildContext context,String UserName_Value,String Password_value ) async {
 
@@ -20,14 +21,15 @@ import "SubmitFile.dart";
 
   if(response.statusCode==200){
     Map <String ,dynamic> dartbody =jsonDecode(response.body);
-   print(jsonDecode(response.body));
+   //print(jsonDecode(response.body));
     global.access_token=dartbody["access"];
     Navigator.push(
        context,MaterialPageRoute(builder: (context) => NextPage()));
 
   }
   else {
-    print(jsonDecode(response.body));
+    Future.delayed(Duration.zero, () => showAlertDialog(context,"Error while Login"));
+    //print(jsonDecode(response.body));
   }
 }
 
