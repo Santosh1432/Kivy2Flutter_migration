@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "Request.dart";
 
+
 void main() {
   runApp(MyApp());
 }
@@ -120,8 +121,6 @@ showAlertDialog(BuildContext context,String msg) {
     ),
     onPressed: () {Navigator.pop(context); },
   );
-
-  // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Alert"),
     content: Text(msg),
@@ -129,11 +128,17 @@ showAlertDialog(BuildContext context,String msg) {
       okButton,
     ],
   );
-  // show the dialog
   showDialog(
     context: context,
-    builder: (BuildContext context) {
+
+    builder: (context) {
       return alert;
     },
   );
+  // set up the AlertDialog
+  //  CustomAlert.showCustomDialog(context,title: "Alert",okBtnText: "Save",
+  //    cancelBtnText: "Cancel",
+  //      okBtnFunction :()=>Navigator.pop(context));
+  // show the dialog
+
 }
