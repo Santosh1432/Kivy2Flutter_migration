@@ -9,6 +9,7 @@ int submit_single_digit_num=0;
 String Single_digit_string="";
 String SlotValue = "";
 var date=DateTime.now();
+
 String dateToday = DateFormat('d MMMM, yyyy').format(date);
 TextStyle datestyle = TextStyle(
     fontWeight: FontWeight.w700,
@@ -27,8 +28,7 @@ class SubmitPageState extends State<SubmitPage> {
     int currenttime = DateTime.now().hour;
 
     var currentday= DateFormat('EEEE').format(date);
-    //var currentday=dateParse.day;
-    //int currentday = DateTime.now().day;
+
 
     Map<int, String> slotdict = {};
     List<double> slotlist = [];
@@ -201,7 +201,7 @@ class SubmitPageState extends State<SubmitPage> {
         height: 20,
         padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
         onPressed: (){
-          if(threedigit.text.length!=0 && Single_digit_string.length!=null ){
+          if(threedigit.text.length ==3 && Single_digit_string.length!=null ){
             FinalSubmit(context,submit_three_digit_num,submit_single_digit_num,submit_slot_num);
             Single_digit_string="";
           }else{
@@ -237,9 +237,9 @@ class SubmitPageState extends State<SubmitPage> {
                       //Align(alignment: Alignment.center,child: threedigitField,),
                       //new Padding(padding: new EdgeInsets.all(25.0)),
                       Align(alignment: Alignment.center,child: get1digitnum,),
-                      new Padding(padding: new EdgeInsets.all(15.0)),
+                      new Padding(padding: new EdgeInsets.all(10.0)),
                       Align(alignment: Alignment.center,child: singledigitvalue,),
-                     new Padding(padding: new EdgeInsets.all(10.0)),
+
                       Align(alignment: Alignment.bottomCenter,child: final_submit,)
                       //final_submit
                       //singledigitvalue

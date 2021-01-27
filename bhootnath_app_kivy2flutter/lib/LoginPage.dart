@@ -9,6 +9,7 @@ TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     final emailField = TextField(
       controller: username,
       obscureText: false,
@@ -33,6 +34,7 @@ class LoginPage extends StatelessWidget {
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
+
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -55,6 +57,7 @@ class LoginPage extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
+
         title: Text(
           "BhootNath Result Publish Page",
           textAlign: TextAlign.center,
