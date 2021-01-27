@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'main.dart';
+import 'ShowAlertDialog.dart';
 import 'SubmitFile.dart';
 
 var access_token="";
@@ -59,6 +59,8 @@ void FinalSubmit(BuildContext context,int digit3,int digit1,int slot ) async {
     if (final_sub_response.statusCode == 201) {
       Future.delayed(
           Duration.zero, () => showAlertDialog(context, "Success"));
+      // threedigit.clear();
+      //Single_digit_string="";
     }
     else {
       Future.delayed(
